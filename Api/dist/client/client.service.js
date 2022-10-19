@@ -16,19 +16,18 @@ exports.ClientService = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
 const client_entity_1 = require("./client.entity");
+const bcrypt = require("bcrypt");
 let ClientService = class ClientService {
-    constructor(ClientRepository) {
-        this.ClientRepository = ClientRepository;
-    }
-    async findAll() {
-        return this.ClientRepository.find();
+    constructor(clientRepository) {
+        this.clientRepository = clientRepository;
     }
     async register(data) {
         const user = new client_entity_1.Client();
         user.email = data.email;
-        user.senha = data.senha;
+        user.senha = bcrypt.hashSync(data.senha, 8);
         user.nome = data.nome;
-        return this.ClientRepository.save(user)
+        return this.clientRepository
+            .save(user)
             .then(() => {
             return {
                 status: true,
@@ -40,6 +39,12 @@ let ClientService = class ClientService {
                 status: false,
                 message: 'Erro ao efetuar cadastro :( ',
             };
+        });
+    }
+    async Auth(email) {
+        return this.clientRepository.findOne({
+            select: ['email', 'senha', 'id', 'nome'],
+            where: [{ email: email }],
         });
     }
 };

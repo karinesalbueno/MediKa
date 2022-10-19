@@ -14,24 +14,38 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientController = void 0;
 const common_1 = require("@nestjs/common");
+const auth_guard_1 = require("@nestjs/passport/dist/auth.guard");
+const app_service_1 = require("../app.service");
 const client_service_1 = require("./client.service");
 let ClientController = class ClientController {
-    constructor(ClientService) {
+    constructor(ClientService, appService) {
         this.ClientService = ClientService;
+        this.appService = appService;
     }
-    async list() {
-        return this.ClientService.findAll();
+    getServices() {
+        return this.appService.getServices();
+    }
+    async login(req) {
+        return req.user;
     }
     async register(data) {
         return this.ClientService.register(data);
     }
 };
 __decorate([
-    (0, common_1.Get)('sign-in'),
+    (0, common_1.Get)('services'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], ClientController.prototype, "getServices", null);
+__decorate([
+    (0, common_1.UseGuards)((0, auth_guard_1.AuthGuard)('local')),
+    (0, common_1.Post)('auth'),
+    __param(0, (0, common_1.Request)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], ClientController.prototype, "list", null);
+], ClientController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)('sign-up'),
     __param(0, (0, common_1.Body)()),
@@ -40,8 +54,9 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ClientController.prototype, "register", null);
 ClientController = __decorate([
-    (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [client_service_1.ClientService])
+    (0, common_1.Controller)('user'),
+    __metadata("design:paramtypes", [client_service_1.ClientService,
+        app_service_1.AppService])
 ], ClientController);
 exports.ClientController = ClientController;
 //# sourceMappingURL=client.controller.js.map
