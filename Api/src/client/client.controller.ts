@@ -21,17 +21,20 @@ export class ClientController {
     private readonly appService: AppService,
   ) {}
 
+  //Rota de listagem de serviços
   @Get('services')
   getServices(): object {
     return this.appService.getServices();
   }
 
+  //Rota de autenticação (login)
   @UseGuards(AuthGuard('local'))
   @Post('auth')
   async login(@Request() req) {
     return req.user;
   }
 
+  //Rota de Cadastro de login
   @Post('sign-up')
   async register(@Body() data: ClientRegisterDto): Promise<MessageDto> {
     return this.ClientService.register(data);

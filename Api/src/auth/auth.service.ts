@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt';
 export class AuthService {
   constructor(private usuarioService: ClientService) {}
 
+  //Valida o usuário com email, senha fornecida e a criptografada
   async validateUser(email: string, senha: string): Promise<any> {
     const usuario = await this.usuarioService.Auth(email);
     if (usuario && bcrypt.compareSync(senha, usuario.senha)) {

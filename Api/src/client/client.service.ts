@@ -11,9 +11,11 @@ export class ClientService {
     @Inject('Client_REPOSITORY') private clientRepository: Repository<Client>,
   ) {}
 
+  //Cadastro de login
   async register(data: ClientRegisterDto): Promise<MessageDto> {
     const user = new Client();
     user.email = data.email;
+    //bcrypt = criptografa a senha fornecida
     user.senha = bcrypt.hashSync(data.senha, 8);
     user.nome = data.nome;
 
@@ -33,6 +35,7 @@ export class ClientService {
       });
   }
 
+  //retorna os dados conforme o email de requisição
   async Auth(email: string): Promise<Client | undefined> {
     return this.clientRepository.findOne({
       select: ['email', 'senha', 'id', 'nome'],
