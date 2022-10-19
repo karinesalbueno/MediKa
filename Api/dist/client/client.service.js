@@ -38,7 +38,7 @@ let ClientService = class ClientService {
             .catch(() => {
             return {
                 status: false,
-                message: 'Erro ao efetuar cadastro :(',
+                message: 'Erro ao efetuar cadastro :( ',
             };
         });
     }

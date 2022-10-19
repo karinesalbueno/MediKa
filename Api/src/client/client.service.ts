@@ -30,7 +30,7 @@ export class ClientService {
       .catch(() => {
         return <MessageDto>{
           status: false,
-          message: 'Erro ao efetuar cadastro :(',
+          message: 'Erro ao efetuar cadastro :( ',
         };
       });
   }
