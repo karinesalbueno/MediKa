@@ -9,6 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const passport_1 = require("@nestjs/passport");
+const jwt_1 = require("@nestjs/jwt");
+const constants_1 = require("./constants");
+const jwt_strategy_1 = require("./jwt.strategy");
 const client_module_1 = require("../client/client.module");
 const auth_service_1 = require("./auth.service");
 const local_strategy_1 = require("./local.strategy");
@@ -16,8 +19,16 @@ let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [client_module_1.ClientModule, passport_1.PassportModule],
-        providers: [auth_service_1.AuthService, local_strategy_1.LocalStrategy],
+        imports: [
+            client_module_1.ClientModule,
+            passport_1.PassportModule,
+            jwt_1.JwtModule.register({
+                secret: constants_1.jwtConstants.secret,
+                signOptions: { expiresIn: '30m' },
+            }),
+        ],
+        providers: [auth_service_1.AuthService, local_strategy_1.LocalStrategy, jwt_strategy_1.JwtStrategy],
+        exports: [jwt_1.JwtModule, auth_service_1.AuthService],
     })
 ], AuthModule);
 exports.AuthModule = AuthModule;

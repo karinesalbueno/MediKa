@@ -14,25 +14,29 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ClientController = void 0;
 const common_1 = require("@nestjs/common");
-const auth_guard_1 = require("@nestjs/passport/dist/auth.guard");
-const app_service_1 = require("../app.service");
 const client_service_1 = require("./client.service");
+const auth_guard_1 = require("@nestjs/passport/dist/auth.guard");
+const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
+const auth_service_1 = require("../auth/auth.service");
+const app_service_1 = require("../app.service");
 let ClientController = class ClientController {
-    constructor(ClientService, appService) {
+    constructor(ClientService, appService, authService) {
         this.ClientService = ClientService;
         this.appService = appService;
+        this.authService = authService;
     }
     getServices() {
         return this.appService.getServices();
     }
     async login(req) {
-        return req.user;
+        return this.authService.login(req.user);
     }
     async register(data) {
         return this.ClientService.register(data);
     }
 };
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('services'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
@@ -56,7 +60,8 @@ __decorate([
 ClientController = __decorate([
     (0, common_1.Controller)('user'),
     __metadata("design:paramtypes", [client_service_1.ClientService,
-        app_service_1.AppService])
+        app_service_1.AppService,
+        auth_service_1.AuthService])
 ], ClientController);
 exports.ClientController = ClientController;
 //# sourceMappingURL=client.controller.js.map

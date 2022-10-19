@@ -6,22 +6,26 @@ import {
   UseGuards,
   Request,
 } from '@nestjs/common';
-
-import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
-import { AppService } from 'src/app.service';
-import { MessageDto } from 'src/messages/messages.dto';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { ClientService } from './client.service';
+import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+
 import { ClientRegisterDto } from './dto/client.register.dto';
+import { AuthService } from 'src/auth/auth.service';
+import { AppService } from 'src/app.service';
+import { MessageDto } from 'src/messages/messages.dto';
 
 @Controller('user')
 export class ClientController {
   constructor(
     private readonly ClientService: ClientService,
     private readonly appService: AppService,
+    private authService: AuthService,
   ) {}
 
-  //Rota de listagem de serviços
+  //Rota de listagem de serviços com verificação de token
+  @UseGuards(JwtAuthGuard)
   @Get('services')
   getServices(): object {
     return this.appService.getServices();
@@ -31,7 +35,8 @@ export class ClientController {
   @UseGuards(AuthGuard('local'))
   @Post('auth')
   async login(@Request() req) {
-    return req.user;
+    //retorna token de acesso :)
+    return this.authService.login(req.user);
   }
 
   //Rota de Cadastro de login
