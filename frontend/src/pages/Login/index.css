@@ -1,0 +1,157 @@
+body{
+    margin: 0;
+}
+#root{
+    height: 100vh;
+}
+
+* ::-webkit-scrollbar {
+    width: 6px
+}
+
+* ::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+* ::-webkit-scrollbar-thumb {
+    background-color: #90BA2B
+}
+
+* ::-webkit-scrollbar-button {
+    display: none
+}
+
+::selection{
+    background-color: #96E000;
+    color: rgba(0,0,0,0.7)
+}
+
+::-moz-selection{
+    background-color: #96E000;
+    color: rgba(0,0,0,0.7)
+}
+
+a{
+    text-decoration: none;
+    color: #fff
+}
+.login_bt:disabled{
+    background: rgb(212, 212, 212);
+ }
+.cli_btns_st1{
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+}
+
+.cli_btns_st1{
+    background-color: #90BA2B
+}
+
+.cli_min_btns{
+    color: #fff;
+    padding: 5px 10px;
+    border: 0;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: all 200ms linear
+}
+
+.cli_min_btns_st1{
+    background-color: #90BA2B 
+}
+
+.cli_min_btns_st2{
+    background-color: #ccc 
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.login_box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
+
+.logo_cont{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #333;
+}
+
+.login_box>span{
+    margin-bottom: 20px;
+}
+
+
+.login_box input{
+    width: 320px;
+    position: relative;
+    z-index: 1;
+    padding: 10px;
+    border: 1px solid;
+    border-color: transparent transparent rgba(0,0,0,0.4);
+    background-color: transparent
+}
+
+.login_box input:focus{
+    outline: 0
+}
+
+
+.login_bt{
+    margin-top: 30px
+}
+
+
+@media screen and (max-width: 960px) {
+    .logo_cont{
+        top: 0;
+        width: 100%;
+    }
+
+    .logo{
+        width: 170px !important;
+        height: 80px !important;
+        position: absolute;
+        top: 10px;
+        left: 10px
+    }
+
+    .login_box input{
+        border-color: transparent transparent rgba(255,255,255,0.4);
+        color: rgba(255,255,255,0.8)
+    }
+
+
+    .bor_st{
+        color: rgba(255,255,255,0.8) !important
+    }
+
+    .login_bt{
+        position: relative
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .login_box input{
+        width: 220px
+    }
+
+    .login_box i{
+        margin-right: 10px
+    }
+}

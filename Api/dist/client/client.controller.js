@@ -16,7 +16,6 @@ exports.ClientController = void 0;
 const common_1 = require("@nestjs/common");
 const client_service_1 = require("./client.service");
 const auth_guard_1 = require("@nestjs/passport/dist/auth.guard");
-const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 const auth_service_1 = require("../auth/auth.service");
 const app_service_1 = require("../app.service");
 let ClientController = class ClientController {
@@ -29,14 +28,14 @@ let ClientController = class ClientController {
         return this.appService.getServices();
     }
     async login(req) {
-        return this.authService.login(req.user);
+        const token = this.authService.login(req.user);
+        return token;
     }
     async register(data) {
         return this.ClientService.register(data);
     }
 };
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Get)('services'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
