@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Card from '../../components/Card';
+import './index.css'
 
 const Home = () => {
-
     return (
-        <h1>Home</h1>)
-}  
+        <div className='home'>
+            <Card />
+        </div>
+    )
+}
 
 export default Home
