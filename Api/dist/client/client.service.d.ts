@@ -3,8 +3,8 @@ import { Repository } from 'typeorm';
 import { Client } from './client.entity';
 import { ClientRegisterDto } from './dto/client.register.dto';
 export declare class ClientService {
-    private ClientRepository;
-    constructor(ClientRepository: Repository<Client>);
-    findAll(): Promise<Client[]>;
+    private clientRepository;
+    constructor(clientRepository: Repository<Client>);
     register(data: ClientRegisterDto): Promise<MessageDto>;
+    Auth(email: string): Promise<Client | undefined>;
 }
