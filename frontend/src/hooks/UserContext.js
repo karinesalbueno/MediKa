@@ -81,6 +81,7 @@ const UserContextProvider = ({ children }) => {
             onLoginHandler,
             onLogoutHandler,
             userInfo,
+            userToken
         }}>
             {children}
         </UserContext.Provider>

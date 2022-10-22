@@ -4,7 +4,7 @@ exports.databaseProviders = void 0;
 const typeorm_1 = require("typeorm");
 exports.databaseProviders = [
     {
-        provide: 'DATA_SOURCE',
+        provide: 'DATABASE_CONNECTION',
         useFactory: async () => {
             const dataSource = new typeorm_1.DataSource({
                 type: 'mysql',
