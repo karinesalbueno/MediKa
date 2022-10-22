@@ -84,13 +84,6 @@ a{
     justify-content: center
 }
 
-.logo_cont{
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background-color: #333;
-}
 
 .login_box>span{
     margin-bottom: 20px;
@@ -130,12 +123,6 @@ a{
         top: 10px;
         left: 10px
     }
-
-    .login_box input{
-        border-color: transparent transparent rgba(255,255,255,0.4);
-        color: rgba(255,255,255,0.8)
-    }
-
 
     .bor_st{
         color: rgba(255,255,255,0.8) !important
