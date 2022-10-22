@@ -6,7 +6,7 @@ exports.ClientProviders = [
     {
         provide: 'Client_REPOSITORY',
         useFactory: (dataSource) => dataSource.getRepository(client_entity_1.Client),
-        inject: ['DATA_SOURCE'],
+        inject: ['DATABASE_CONNECTION'],
     },
 ];
 //# sourceMappingURL=client.providers.js.map

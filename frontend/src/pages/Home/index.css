@@ -1,0 +1,48 @@
+.home{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 200px;
+}
+
+li {
+    list-style: none;
+}
+ul{
+    padding: 0;
+}
+
+.items {
+    margin-top: 30px;
+    border: 1px solid #dbc4d6;    
+    border-radius: 8px;
+    min-width: 400px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 26%);
+}
+.descricao{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.especf{
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+}
+.checkbox{
+    font-size: 0.8rem;
+}
+p{
+    margin:8px;
+    font-size: 0.7rem;
+}
+
+.card {
+    margin:auto;
+    max-width: 50%;
+    display: flex;
+    gap: 20px;
+  }
+

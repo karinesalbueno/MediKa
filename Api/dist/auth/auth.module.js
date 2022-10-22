@@ -15,6 +15,7 @@ const jwt_strategy_1 = require("./jwt.strategy");
 const client_module_1 = require("../client/client.module");
 const auth_service_1 = require("./auth.service");
 const local_strategy_1 = require("./local.strategy");
+const token_module_1 = require("../token/token.module");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -22,6 +23,7 @@ AuthModule = __decorate([
         imports: [
             client_module_1.ClientModule,
             passport_1.PassportModule,
+            token_module_1.TokenModule,
             jwt_1.JwtModule.register({
                 secret: constants_1.jwtConstants.secret,
                 signOptions: { expiresIn: '30m' },

@@ -6,7 +6,7 @@ const Navigation = (props) => {
     <nav >
       {props.isLogged ?
         <div className='nav'>
-          <h3>mediKa</h3>
+          <h1>mediKa</h1>
           <button onClick={props.onLogout}>Sair</button>
         </div>
         :
